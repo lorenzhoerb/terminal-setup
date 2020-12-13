@@ -1,5 +1,5 @@
 " set the runtime path to include Vundle and initialize
-"
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -12,8 +12,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'frazrepo/vim-rainbow'
 Plugin 'vim-scripts/indentpython.vim'
+Plugin 'tomasiser/vim-code-dark'
 
 
 call vundle#end()
@@ -21,9 +21,6 @@ filetype plugin indent on
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
-" Activate Rainbow Brackets
-let g:rainbow_active = 1
 
 set encoding=utf-8
 syntax enable
@@ -71,7 +68,9 @@ nnoremap <space> za
 nnoremap J }
 nnoremap K {
 
-colorscheme onedark
+ colorscheme codedark
+" colorscheme onedark
+"
 syntax on
 set number
 highlight Normal ctermbg=None
@@ -90,7 +89,9 @@ highlight LineNr ctermfg=darkgrey
 " highlight current curser number
 se cul
 hi clear CursorLine
-hi cursorlinenr guifg=bold ctermfg=Yellow
+hi cursorlinenr guifg=bold ctermfg=Yellow cterm=NONE
+
+highlight Comment ctermfg=green
 
 "new line in normal mode
 map <Enter> o<ESC>
