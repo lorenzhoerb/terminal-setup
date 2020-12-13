@@ -70,7 +70,7 @@ nnoremap K {
 
  colorscheme codedark
 " colorscheme onedark
-"
+
 syntax on
 set number
 highlight Normal ctermbg=None
