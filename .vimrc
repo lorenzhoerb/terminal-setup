@@ -14,7 +14,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'tomasiser/vim-code-dark'
-
+Plugin 'iamcco/markdown-preview.nvim'
 
 call vundle#end()
 filetype plugin indent on
@@ -70,7 +70,7 @@ nnoremap K {
 
  colorscheme codedark
 " colorscheme onedark
-
+"
 syntax on
 set number
 highlight Normal ctermbg=None
@@ -78,6 +78,8 @@ highlight Normal ctermbg=None
 " visual to normal
 set timeoutlen=1000 ttimeoutlen=0
 
+" backspace
+set backspace=indent,eol,start" >> ~/.vimrc
 
 let mapleader = ","
 
@@ -89,7 +91,7 @@ highlight LineNr ctermfg=darkgrey
 " highlight current curser number
 se cul
 hi clear CursorLine
-hi cursorlinenr guifg=bold ctermfg=Yellow cterm=NONE
+" hi cursorlinenr guifg=bold ctermfg=Yellow cterm=NONE
 
 highlight Comment ctermfg=green
 
