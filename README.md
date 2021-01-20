@@ -1,3 +1,8 @@
-# iterm-settings
+# Bash Settings
 
-iterm theme: [Nocturnal Winter](https://iterm2colorschemes.com/)
+Bash-Settings beinhalten:
+* .vimrc
+* .zshrc
+
+
+
