@@ -22,13 +22,16 @@ Download `.vimrc` and `.zshrc` to you home folder
 
 1. split vim horizontal `ss`
 2. split vim vertical `sv`
-2. move cursor to window 
+3. move cursor to window 
     * up `sk`
     * down `sj`
     * left `sh`
     * right `sl`
 
-
+#### move cursor
+1. jump paragraph
+    * up `K`
+    * down `J`
 
 #### general
 1. Fuzzy Search Files `ctrl-p` 
