@@ -1,5 +1,4 @@
 " set the runtime path to include Vundle and initialize
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -20,13 +19,17 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'junegunn/goyo.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tpope/vim-fugitive'
+Plugin 'xuhdev/vim-latex-live-preview'
 call vundle#end()
+
+let g:livepreview_previewer = 'open -a Preview'
+autocmd Filetype tex setl updatetime=10
+
 
 filetype plugin indent on
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
 
 " let g:pandoc#spell#enabled=0
 
@@ -38,7 +41,6 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set conceallevel=0
-" set formatoptions+=a
 
 set laststatus=2
 
@@ -108,6 +110,7 @@ map <S-Enter> O<ESC>
 nmap ss :split<Return><C-w>w
 nmap sv :vsplit<Return><C-w>w
 
+" zoom vim pane / window
 noremap si <c-w>_ \| <c-w>\|
 noremap so <c-w>=
 
@@ -117,21 +120,33 @@ map s<left> <C-w>h
 map s<up> <C-w>k
 map s<down> <C-w>j
 map s<right> <C-w>l
+
 map sh <C-w>h
 map sk <C-w>k
 map sj <C-w>j
 map sl <C-w>l
+
 " Resize window
 nmap <C-w><left> <C-w><
 nmap <C-w><right> <C-w>>
 nmap <C-w><up> <C-w>+
 nmap <C-w><down> <C-w>-
 
+nmap <C-w>j :vertical resize -15<CR>
+nmap <C-w>k :vertical resize +15<CR>
+
 "Move Window
 map sH <C-w>H
 map sJ <C-w>J
 map sK <C-w>K
 map sL <C-w>L
+
+"Move Lines
+
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 "Goyo
 map <C-g> :Goyo<CR>
@@ -143,3 +158,12 @@ nmap <Leader>n :NERDTreeToggle<CR>
 nmap <leader>gs :G<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
+
+"auto line break
+autocmd BufRead,BufNewFile *.txt set wrap linebreak
+autocmd BufRead,BufNewFile *.md set wrap linebreak
+autocmd BufRead,BufNewFile *.markdown set wrap linebreak
+
+" exports markdown to pdf and opens it
+nmap <C-s> :w<CR>:!pandoc %:t -o %:r.pdf;open %:r.pdf &<CR>
+

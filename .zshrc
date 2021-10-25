@@ -1,4 +1,5 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+#
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -19,10 +20,13 @@ export ZSH="/Users/hoerb/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+
 # ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_THEME="eastwood"
-# ZSH_THEME="robbyrussell"
+# ZSH_THEME="eastwood"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="awesomepanda"
 # ZSH_THEME="gentoo"
+# ZSH_THEME="cypher"
 
 
 
@@ -124,6 +128,15 @@ source $ZSH/oh-my-zsh.sh
 export TERM=xterm-256color
 
 # Alias
-alias ep1="cd /Volumes/Storage/UNI/WS2020/EP1/"
+alias uni="cd /Volumes/Storage/UNI/WS2021/"
+alias unifp="cd /Volumes/Storage/UNI/WS2021/FP"
+alias unios="cd /Volumes/Storage/UNI/WS2021/OS"
+alias unioop="cd /Volumes/Storage/UNI/WS2021/OOP"
+alias unidbs="cd /Volumes/Storage/UNI/WS2021/DBS"
+alias unitil="cd /Volumes/Storage/UNI/WS2021/TIL"
+
+
+
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
+[ -f "/Users/hoerb/.ghcup/env" ] && source "/Users/hoerb/.ghcup/env" # ghcup-env
