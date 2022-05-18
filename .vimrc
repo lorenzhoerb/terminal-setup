@@ -1,9 +1,10 @@
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
+" Plugin 'ryanoasis/vim-devicons'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'alvan/vim-closetag'
 Plugin 'tmhedberg/matchit'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'itchyny/lightline.vim'
@@ -19,12 +20,13 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'junegunn/goyo.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'tpope/vim-fugitive'
-Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'AutoComplPop'
+Plugin 'natebosch/vim-lsc'
+Plugin 'prettier/vim-prettier'
+Plugin 'joshdick/onedark.vim'
 call vundle#end()
 
-let g:livepreview_previewer = 'open -a Preview'
-autocmd Filetype tex setl updatetime=10
-
+let g:lsc_server_commands = {'dart': 'dart_language_server'}
 
 filetype plugin indent on
 
@@ -127,13 +129,10 @@ map sj <C-w>j
 map sl <C-w>l
 
 " Resize window
-nmap <C-w><left> <C-w><
-nmap <C-w><right> <C-w>>
-nmap <C-w><up> <C-w>+
-nmap <C-w><down> <C-w>-
-
-nmap <C-w>j :vertical resize -15<CR>
-nmap <C-w>k :vertical resize +15<CR>
+map - :vertical resize -20<CR>
+map + :vertical resize +20<CR>
+" map * :resize +5<CR>
+" map _ :resize -5<CR>
 
 "Move Window
 map sH <C-w>H
@@ -153,6 +152,7 @@ map <C-g> :Goyo<CR>
 
 nnoremap <Leader><space> :noh<return>
 nmap <Leader>n :NERDTreeToggle<CR>
+nmap <Leader>m :NERDTreeFocus<CR>
 
 "git
 nmap <leader>gs :G<CR>
@@ -165,5 +165,60 @@ autocmd BufRead,BufNewFile *.md set wrap linebreak
 autocmd BufRead,BufNewFile *.markdown set wrap linebreak
 
 " exports markdown to pdf and opens it
-nmap <C-s> :w<CR>:!pandoc %:t -o %:r.pdf;open %:r.pdf &<CR>
+nmap <C-s> :w<CR>:!pandoc %:t -o %:r.pdf;open %:r.pdf &<CR><CR>
+
+" Enable CursorLine
+set cursorline
+" Default Colors for CursorLine
+highlight  CursorLine ctermbg=235 ctermfg=None
+
+set showcmd
+
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+
+" Auto TAG CLOSE
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
 
