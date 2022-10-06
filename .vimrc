@@ -19,10 +19,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'junegunn/goyo.vim'
 Plugin 'morhetz/gruvbox'
-Plugin 'tpope/vim-fugitive'
 Plugin 'AutoComplPop'
 Plugin 'natebosch/vim-lsc'
-Plugin 'prettier/vim-prettier'
 Plugin 'joshdick/onedark.vim'
 call vundle#end()
 
@@ -147,6 +145,12 @@ nnoremap <C-k> :m .-2<CR>==
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
+" Copy to Clipboard
+
+nnoremap Y "+y
+vnoremap Y "+y
+nnoremap yY ^"+y$
+
 "Goyo
 map <C-g> :Goyo<CR>
 
@@ -221,4 +225,7 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 "
 let g:closetag_close_shortcut = '<leader>>'
+
+:nnoremap <Leader>b :buffers<CR>:buffer<Space>
+
 
