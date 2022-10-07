@@ -1,231 +1,95 @@
-" set the runtime path to include Vundle and initialize
+set nocompatible
+filetype on
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" Plugin 'ryanoasis/vim-devicons'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'alvan/vim-closetag'
-Plugin 'tmhedberg/matchit'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-commentary'
+Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'tomasiser/vim-code-dark'
-Plugin 'iamcco/markdown-preview.nvim'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'junegunn/goyo.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'AutoComplPop'
-Plugin 'natebosch/vim-lsc'
-Plugin 'joshdick/onedark.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'alvan/vim-closetag'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-commentary'
+
+
+" Code Format
+
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+
+Plugin 'google/vim-glaive'
+
 call vundle#end()
 
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
+syntax on
 
-filetype plugin indent on
+set cursorline
+
+set relativenumber
+
+" set shif with 4 tabs
+set shiftwidth=4
+
+" Set tab width to 4 columns.
+set tabstop=4
+
+" Use space characters instead of tabs.
+set expandtab
+
+" Ignore capital letters during search.
+set ignorecase
+
+" Override the ignorecase option if searching for capital letters.
+" This will allow you to search specifically for capital letters.
+set smartcase
+
+" Use highlighting when doing a search.
+set hlsearch
+
+" Show the mode you are on the last line.
+set showmode
+
+" Show matching words during a search.
+set showmatch
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" let g:pandoc#spell#enabled=0
-
-set encoding=utf-8
-syntax enable
-syntax on
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set conceallevel=0
-
-set laststatus=2
-
-set number
-set relativenumber
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases 
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch 
-
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-
-" Enable folding with the spacebar
-nnoremap <space> za
-
-" map paragraph jump to J and K
-nnoremap J }
-nnoremap K {
-
-nnoremap j gj
-nnoremap k gk
-
-"colorscheme codedark
- colorscheme onedark
-
-syntax on
-set number
-highlight Normal ctermbg=None
-
-" visual to normal
-set timeoutlen=1000 ttimeoutlen=0
-
-" backspace
-set backspace=indent,eol,start" >> ~/.vimrc
-
-set spelllang=en_us,de_de
-
+" Set the backslash as the leader key.
 let mapleader = ","
 
-let g:gitgutter_enabled=0
-nmap <leader>d :GitGutterToggle<cr>
+" Code Format
 
-highlight LineNr ctermfg=darkgrey
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType vue AutoFormatBuffer prettier
+  autocmd FileType swift AutoFormatBuffer swift-format
+augroup END
 
-" highlight current curser number
-se cul
-hi clear CursorLine
-" hi cursorlinenr guifg=bold ctermfg=Yellow cterm=NONE
 
-highlight Comment ctermfg=green
-
-"new line in normal mode
-map <Enter> o<ESC>
-map <S-Enter> O<ESC>
-
-"split window
-nmap ss :split<Return><C-w>w
-nmap sv :vsplit<Return><C-w>w
-
-" zoom vim pane / window
-noremap si <c-w>_ \| <c-w>\|
-noremap so <c-w>=
-
-"move in window
-nmap <Space> <C-w>w
-map s<left> <C-w>h
-map s<up> <C-w>k
-map s<down> <C-w>j
-map s<right> <C-w>l
-
-map sh <C-w>h
-map sk <C-w>k
-map sj <C-w>j
-map sl <C-w>l
-
-" Resize window
-map - :vertical resize -20<CR>
-map + :vertical resize +20<CR>
-" map * :resize +5<CR>
-" map _ :resize -5<CR>
-
-"Move Window
-map sH <C-w>H
-map sJ <C-w>J
-map sK <C-w>K
-map sL <C-w>L
-
-"Move Lines
-
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
-
-" Copy to Clipboard
-
-nnoremap Y "+y
-vnoremap Y "+y
-nnoremap yY ^"+y$
-
-"Goyo
-map <C-g> :Goyo<CR>
+" ### KEY Bindings ### {
 
 nnoremap <Leader><space> :noh<return>
+
 nmap <Leader>n :NERDTreeToggle<CR>
 nmap <Leader>m :NERDTreeFocus<CR>
 
-"git
-nmap <leader>gs :G<CR>
-nmap <leader>gj :diffget //3<CR>
-nmap <leader>gf :diffget //2<CR>
+"new line in normal mode
+map <Enter> o<ESC>
 
-"auto line break
-autocmd BufRead,BufNewFile *.txt set wrap linebreak
-autocmd BufRead,BufNewFile *.md set wrap linebreak
-autocmd BufRead,BufNewFile *.markdown set wrap linebreak
+" }
 
-" exports markdown to pdf and opens it
-nmap <C-s> :w<CR>:!pandoc %:t -o %:r.pdf;open %:r.pdf &<CR><CR>
-
-" Enable CursorLine
-set cursorline
-" Default Colors for CursorLine
-highlight  CursorLine ctermbg=235 ctermfg=None
-
-set showcmd
-
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
-
-" Auto TAG CLOSE
-
-" filenames like *.xml, *.html, *.xhtml, ...
-" These are the file extensions where this plugin is enabled.
-"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml'
-
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-
-" integer value [0|1]
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-"
-let g:closetag_emptyTags_caseSensitive = 1
-
-" dict
-" Disables auto-close if not in a "valid" region (based on filetype)
-"
-let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ 'typescriptreact': 'jsxRegion,tsxRegion',
-    \ 'javascriptreact': 'jsxRegion',
-    \ }
-
-" Shortcut for closing tags, default is '>'
-"
-let g:closetag_shortcut = '>'
-
-" Add > at current position without closing the current tag, default is ''
-"
-let g:closetag_close_shortcut = '<leader>>'
-
-:nnoremap <Leader>b :buffers<CR>:buffer<Space>
-
-
+let g:molokai_original = 1
+colorscheme molokai

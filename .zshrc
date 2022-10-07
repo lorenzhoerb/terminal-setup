@@ -21,14 +21,7 @@ export ZSH="/Users/hoerb/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-# ZSH_THEME="eastwood"
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="awesomepanda"
-# ZSH_THEME="gentoo"
-# ZSH_THEME="cypher"
-
-
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -128,15 +121,19 @@ source $ZSH/oh-my-zsh.sh
 export TERM=xterm-256color
 
 # Alias
-alias uni="cd /Volumes/Storage/UNI/WS2021/"
-alias unifp="cd /Volumes/Storage/UNI/WS2021/FP"
-alias unios="cd /Volumes/Storage/UNI/WS2021/OS"
-alias unioop="cd /Volumes/Storage/UNI/WS2021/OOP"
-alias unidbs="cd /Volumes/Storage/UNI/WS2021/DBS"
-alias unitil="cd /Volumes/Storage/UNI/WS2021/TIL"
+alias uni="cd '/Users/hoerb/TU-Wien/UNI/SS2022'"
+alias sepm="cd '/Users/hoerb/TU-Wien/UNI/SS2022/SEPM/individual_assignment/template'"
+alias webe="cd '/Users/hoerb/TU-Wien/UNI/SS2022/WEBE'"
+alias stwt="cd '/Users/hoerb/TU-Wien/UNI/SS2022/STWT'"
+
+alias ov="open https://www.overleaf.com/project"
 
 
 
 alias python=/usr/local/bin/python3
-alias pip=/usr/local/bin/pip3
+# alias pip=/usr/local/bin/pip3
 [ -f "/Users/hoerb/.ghcup/env" ] && source "/Users/hoerb/.ghcup/env" # ghcup-env
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
